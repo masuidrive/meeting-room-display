@@ -1,0 +1,28 @@
+rails:
+  build: .
+  dockerfile: Dockerfile.dev
+  command:
+    [ "bash", "-c", "rm -f tmp/pids/server.pid; ./bin/rails server -b 0.0.0.0" ]
+  environment:
+    DISABLE_SPRING: "1"
+  ports:
+    - "3000:3000"
+  volumes:
+    - ".:/usr/src/app"
+  links:
+    - "mysql"
+
+mysql:
+  image: mysql:5.6
+  environment:
+    MYSQL_ROOT_PASSWORD: "passwd"
+
+react:
+  build: react
+  dockerfile: Dockerfile
+  volumes:
+    - "/usr/src/app/node_modules"
+    - "./react:/usr/src/app"
+    - "./app/assets/javascripts/react:/usr/src/app/dist"
+  command:
+    [ "./node_modules/.bin/parcel", "watch", "src/index.js" ]
