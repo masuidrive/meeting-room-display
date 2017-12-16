@@ -7,4 +7,5 @@
 ## Status
 Work in-progress
 
-冬休みに継続して作って行きます。
+Toreta Advent Calendar 2017に間に合わなかったので、冬休みに継続して作って行きます。
+
